@@ -65,20 +65,27 @@
     [/if]
         </select><span id="nonEditSpan_MA_LEPinUS"></span><br>(if not defined, "00" is extracted)</td>
     </tr>
-     	<tr class="~[evenoddrow]">
+    <tr class="~[evenoddrow]">
         <td class="bold">DOE024</td>
         <td class="bold" title="[Students.S_MA_STU_Demographic_X]NativeLanguage">First (Native) Language</td>
-    	</tr>
-    	<!-- For 2007-2008 school year ONLY -->
-    	<tr class="~[evenoddrow;maintain]" id="HomeLang17_18">
+    </tr>
+<!-- For 2007-2008 school year ONLY -->
+    <tr class="~[evenoddrow;maintain]" id="HomeLang16_17">
+        <td>&nbsp;</td>
+        <td>~[x:insertfile;PopupMenus/MA_HomeLang_temp.html]
+		<div id="defaultMsg_container">
+		</div></td>
+
+    </tr>
+	<tr class="~[evenoddrow;maintain]" id="HomeLang17_18">
         <td>&nbsp;</td>
         <td>
-					<div class="ui-widget">
-						<input  name="[Students.S_MA_STU_Demographic_X]NativeLanguage"  id="MA_Lang1"value=""  type="hidden" maxlength="3" size="4">
-						<input id="languagecd_autocomplete" size="45" type="text" value="">
-					</div>
-				</td>
-    	</tr>
+			<div class="ui-widget">
+				<input  name="[Students.S_MA_STU_Demographic_X]NativeLanguage"  id="MA_Lang1"value=""  type="hidden" maxlength="3" size="4">
+				<input id="languagecd_autocomplete" size="45" type="text" value="">
+			</div>
+		</td>
+    </tr>
 <!-- Implemented after above MA_HomeLang is removed
     <tr class="~[evenoddrow;maintain]">
         <td>&nbsp;</td>
