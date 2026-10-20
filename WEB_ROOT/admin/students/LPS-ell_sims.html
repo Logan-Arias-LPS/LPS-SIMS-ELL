@@ -36,18 +36,35 @@
     		<td class="bold">FLEP Date</td>
     		<td><input name="[Students.U_Students_Extension]FLEPDate" value="~([Students.U_Students_Extension]FLEPDate)"  id="FLEPDate"  type="text" maxlength="10" size="10"></td>
 			</tr>
-    	<tr class="~[evenoddrow]">
+    <tr class="~[evenoddrow]">
         <td class="bold">DOE021</td>
-        <td class="bold" title="[Students]MA_LEPinUS">LEP Students in their First Year in U.S. Schools</td>
-    	</tr>
-    	<tr class="~[evenoddrow;maintain]">
+        <td class="bold" title="[Students.S_MA_STU_Demographic_X]LEP1stYrInUS">LEP Students in their First Year in U.S. Schools</td>
+    </tr>
+    <tr class="~[evenoddrow;maintain]">
         <td>&nbsp;</td>
-        <td><select name="[Students]MA_LEPinUS">
-        	<option value="00">Does not apply (00)</option>
-        	<option value="01">LEP student in first year of U.S. schooling (01)</option>
-        	<option value="02">LEP student not in first year of U.S. schooling (02)</option>
-        </select><br>(if not defined, "00" is extracted)</td>
-    	</tr>
+        <td><select name="[Students.S_MA_STU_Demographic_X]LEP1stYrInUS" id="MA_LEPinUS" class="psloaddrops">
+     ~[if.ModAccess]
+            ~[tlist_sql;
+           SELECT
+               code,
+               className,
+               selected,
+               disabled,
+               description
+           FROM
+               TABLE(MA_PARAMS.getDropDownHTML('MA_XX','MA_LEPinUS','~([Students.S_MA_STU_Demographic_X]LEP1stYrInUS)',~(curtermid),'BU'));
+       ]    <option value='~(code;t)' class='~(className;t)' ~(selected;t) ~(disabled;t)>~(description;t)</option>[/tlist_sql]
+        [else]
+        ~[tlist_sql;
+            SELECT description
+            FROM PS_COMMON_CODE WHERE PS_GROUP='MA_XX' AND CATEGORY  ='MA_LEPinUS'
+            AND code = '~([Students.S_MA_STU_Demographic_X]LEP1stYrInUS)']
+        ~(description)
+
+        [/tlist_sql]
+    [/if]
+        </select><span id="nonEditSpan_MA_LEPinUS"></span><br>(if not defined, "00" is extracted)</td>
+    </tr>
      	<tr class="~[evenoddrow]">
         <td class="bold">DOE024</td>
         <td class="bold" title="[Students.S_MA_STU_Demographic_X]NativeLanguage">First (Native) Language</td>
