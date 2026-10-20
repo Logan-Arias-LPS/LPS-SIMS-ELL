@@ -151,34 +151,36 @@
     [/if]    
     </select><br>(if not defined, "00" is extracted)</td>
 </tr>
-			<tr class="~[evenoddrow]">
-				<td class="bold">DOE028</td>
-				<td class="bold" title="[Students.S_STU_NCEA_X]SealofBiliteracy">Seal of Biliteracy</td>
-			</tr>
-			<tr class="~[evenoddrow;maintain]">
-    		<td>&nbsp;</td>
-    		<td><select name="[Students.S_STU_X]SealofBiliteracy" id="SealofBiliteracy" value="">
-        	~[if.ModAccess]
-          	~[tlist_sql;
-            	SELECT
-              	code,
-              	className,
-              	selected,
-              	disabled,
-              	description
-            	FROM
-              	TABLE(MA_PARAMS.getDropDownHTML('COMMON','SealofBilitUpdate','~([Students.S_STU_X]SealofBiliteracy)',~(curtermid),'U'));
-       			]<option value='~(code;t)' class='~(className;t)' ~(selected;t) ~(disabled;t)>~(description;t)</option>[/tlist_sql]
-        	[else]
-        		~[tlist_sql;
-            	SELECT description
-            	FROM PS_COMMON_CODE WHERE PS_GROUP='COMMON' AND CATEGORY  ='SealofBilitUpdate'
-            	AND code = '~([Students.S_STU_X]SealofBiliteracy)']
-        			~(description)
-        		[/tlist_sql]
-    			[/if]    
-        </select></td>
-			</tr>
+<tr class="~[evenoddrow]">
+<td class="bold">DOE028</td>
+<td class="bold" title="[Students.S_STU_NCEA_X]SealofBiliteracy">Seal of Biliteracy</td>
+</tr>
+<tr class="~[evenoddrow;maintain]">
+    <td>&nbsp;</td>
+    <td><select name="[Students.S_STU_X]SealofBiliteracy" id="SealofBiliteracy" value="">
+         ~[if.ModAccess]
+            ~[tlist_sql;
+           SELECT
+               code,
+               className,
+               selected,
+               disabled,
+               description
+           FROM
+               TABLE(MA_PARAMS.getDropDownHTML('COMMON','SealofBilitUpdate','~([Students.S_STU_X]SealofBiliteracy)',~(curtermid),'U'));
+       ]    <option value='~(code;t)' class='~(className;t)' ~(selected;t) ~(disabled;t)>~(description;t)</option>[/tlist_sql]
+        [else]
+        ~[tlist_sql;
+            SELECT description
+            FROM PS_COMMON_CODE WHERE PS_GROUP='COMMON' AND CATEGORY  ='SealofBilitUpdate'
+            AND code = '~([Students.S_STU_X]SealofBiliteracy)']
+        ~(description)
+            
+        [/tlist_sql]
+    [/if]    
+        </select>
+    </td>
+</tr>
 			<tr class="~[evenoddrow]">
 				<td class="bold">DOE041</td>
 				<td class="bold" title="[Students.S_MA_STU_SIMS_X]ELL_SLIFE">ELL SLIFE - English Language Learner Student with Limited or Interrupted Formal Education</td>
