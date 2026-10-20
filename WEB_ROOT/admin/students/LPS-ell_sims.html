@@ -122,34 +122,35 @@
     [/if] 
 </select><span id="nonEditSpan_MA_EngProficiency"></span><br>(if not defined, "00" is extracted)</td>
 </tr>
-			<tr class="~[evenoddrow]">
-				<td class="bold">DOE026</td>
-				<td class="bold" title="[Students.S_MA_STU_Demographic_X]LEPProgramStatus">English Language Learners Program Status</td>
-			</tr>
-			<tr class="~[evenoddrow;maintain]">
-				<td>&nbsp;</td>
-				<td><select name="[Students.S_MA_STU_Demographic_X]LEPProgramStatus" id="BilingualStatus" value="">
-        	~[if.ModAccess]
-          	~[tlist_sql;
-              SELECT
-                code,
-                className,
-                selected,
-                disabled,
-                description
-              FROM
+<tr class="~[evenoddrow]">
+<td class="bold">DOE026</td>
+<td class="bold" title="[Students.S_MA_STU_Demographic_X]LEPProgramStatus">English Language Learners Program Status</td>
+</tr>
+<tr class="~[evenoddrow;maintain]">
+<td>&nbsp;</td>
+    <td><select name="[Students.S_MA_STU_Demographic_X]LEPProgramStatus" id="BilingualStatus" value="">
+         ~[if.ModAccess]
+            ~[tlist_sql;
+           SELECT
+               code,
+               className,
+               selected,
+               disabled,
+               description
+           FROM
                TABLE(MA_PARAMS.getDropDownHTML('MA_XX','BilingualStat','~([Students.S_MA_STU_Demographic_X]LEPProgramStatus)',~(curtermid),'BU'));
-       			]<option value='~(code;t)' class='~(className;t)' ~(selected;t) ~(disabled;t)>~(description;t)</option>[/tlist_sql]
-        	[else]
-        		~[tlist_sql;
-            	SELECT description
-            	FROM PS_COMMON_CODE WHERE PS_GROUP='MA_XX' AND CATEGORY  ='BilingualStat'
-            	AND code = '~([Students.S_MA_STU_Demographic_X]LEPProgramStatus)']
-        			~(description)
-            [/tlist_sql]
-    			[/if]
-    		</select><br>(if not defined, "00" is extracted)</td>
-			</tr>
+       ]    <option value='~(code;t)' class='~(className;t)' ~(selected;t) ~(disabled;t)>~(description;t)</option>[/tlist_sql]
+        [else]
+        ~[tlist_sql;
+            SELECT description
+            FROM PS_COMMON_CODE WHERE PS_GROUP='MA_XX' AND CATEGORY  ='BilingualStat'
+            AND code = '~([Students.S_MA_STU_Demographic_X]LEPProgramStatus)']
+        ~(description)
+            
+        [/tlist_sql]
+    [/if]    
+    </select><br>(if not defined, "00" is extracted)</td>
+</tr>
 			<tr class="~[evenoddrow]">
 				<td class="bold">DOE028</td>
 				<td class="bold" title="[Students.S_STU_NCEA_X]SealofBiliteracy">Seal of Biliteracy</td>
