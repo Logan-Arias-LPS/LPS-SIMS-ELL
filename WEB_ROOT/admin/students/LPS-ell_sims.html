@@ -253,6 +253,11 @@
 		$j(function() {
 		var languagecd = new Array();
 		languagecd = languagecodelist();
+		window.__disabledLangCodes = [
+		~[tlist_sql;select code as cd from ps_common_code where ps_group='MA_XX' and category='nceslangcode' and effective_enddate is not null and effective_enddate < trunc(sysdate) order by code;]
+		"~(cd)",
+		[/tlist_sql]
+		""];
 		var jquiMajor = parseInt($j.ui.version.split('.')[0]),
 	    	jquiMinor = parseInt($j.ui.version.split('.')[1]),
 	   		autoCompleteStr = 'ui-autocomplete',
@@ -266,17 +271,25 @@
 		$j( "#languagecd_autocomplete" ).autocomplete({
 			minLength: 0,
 			source: languagecd,
+			focus: function( event, ui ) {
+				if ( window.__disabledLangCodes.indexOf( ui.item.value ) > -1 ) { return false; }
+			},
 			select: function( event, ui ) {
+			    if ( window.__disabledLangCodes.indexOf( ui.item.value ) > -1 ) { return false; }
 				$j( "#languagecd_autocomplete" ).val( ui.item.label );
 				$j( "#MA_Lang1" ).val( ui.item.value );
 				return false;
 			}
 		})
 		.data( autoCompleteStr )._renderItem = function( ul, item ) {
-			return $j( "<li></li>" )
-				.data( autoCompleteItemStr, item )
-				.append( "<a>" + item.label + "</a>" )
-				.appendTo( ul );
+			var li = $j( "<li></li>" ).data( autoCompleteItemStr, item );
+			if ( window.__disabledLangCodes.indexOf( item.value ) > -1 ) {
+				li.addClass( "ui-state-disabled" ).css( "opacity", "1" )
+					.append( "<a style='color:#666;cursor:default;'>" + item.label + "</a>" );
+			} else {
+				li.append( "<a>" + item.label + "</a>" );
+			}
+			return li.appendTo( ul );
 		};
 		
 		});
