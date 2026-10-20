@@ -181,13 +181,13 @@
         </select>
     </td>
 </tr>
-			<tr class="~[evenoddrow]">
-				<td class="bold">DOE041</td>
-				<td class="bold" title="[Students.S_MA_STU_SIMS_X]ELL_SLIFE">ELL SLIFE - English Language Learner Student with Limited or Interrupted Formal Education</td>
-			</tr>
-			<tr class="~[evenoddrow;maintain]">
-				<td>&nbsp;</td>
-				<td><select name="[Students.S_MA_STU_SIMS_X]ELL_SLIFE" id="ELL_SLIFE">
+<tr class="~[evenoddrow]">
+<td class="bold">DOE041</td>
+<td class="bold" title="[Students.S_MA_STU_SIMS_X]ELL_SLIFE">ELL SLIFE - English Language Learner Student with Limited or Interrupted Formal Education</td>
+</tr>
+<tr class="~[evenoddrow;maintain]">
+<td>&nbsp;</td>
+<td><select name="[Students.S_MA_STU_SIMS_X]ELL_SLIFE" id="ELL_SLIFE">
 ~[if.ModAccess]
             ~[tlist_sql;
            SELECT
@@ -209,7 +209,7 @@
         [/tlist_sql]
     [/if] 
 </select><br>(if not defined, "00" is extracted)</td>
-			</tr>
+</tr><span id="nonEditSpan_ELL_SLIFE"></span>
     </table>
     <div class="button-row">
 			<input type="hidden" name="ac" value="prim">~[submitbutton]
